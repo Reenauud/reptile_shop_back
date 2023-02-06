@@ -1,30 +1,35 @@
-import { PrimaryGeneratedColumn, Entity, Column, ManyToOne } from "typeorm";
+import {
+  PrimaryGeneratedColumn,
+  Entity,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
 import { ObjectType, Field } from "type-graphql";
 import { Family } from "./Family";
 
 @ObjectType()
 @Entity()
-export class Reptile{
-    @PrimaryGeneratedColumn()
-    id? : number
+export class Reptile {
+  @PrimaryGeneratedColumn()
+  id?: number;
 
-    @Field()
-    @Column()
-    name!: string
+  @Field()
+  @Column()
+  name!: string;
 
-    @Field()
-    @ManyToOne(() => Family, (family) => family.reptiles)
-    family!: Family
+  @ManyToOne(() => Reptile, (reptiles) => reptiles.family)
+  family!: Family;
 
-    @Field()
-    @Column()
-    description!: string
+  @Field()
+  @Column()
+  description!: string;
 
-    @Field()
-    @Column()
-    price!: number
+  @Field()
+  @Column()
+  price!: number;
 
-    @Field()
-    @Column()
-    quantity!: number
+  @Field()
+  @Column()
+  quantity!: number;
 }
