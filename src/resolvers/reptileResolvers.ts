@@ -1,6 +1,5 @@
 import { Query, Arg, Resolver, Mutation } from "type-graphql";
 import { Reptile } from "../entities/Reptile";
-import { CreateReptileInput } from "../inputs/CreateReptileInput";
 import reptileServices from "../services/reptileServices";
 
 @Resolver(Reptile)
@@ -22,8 +21,11 @@ export class ReptileResolvers {
 
   @Mutation(() => Reptile)
   async createReptile(
-    @Arg("reptile") reptile: CreateReptileInput
+    @Arg("name") name: string,
+    @Arg("description") description: string,
+    @Arg("price") price: number,
+    @Arg("quantity") quantity: number,
   ): Promise<Reptile> {
-    return await reptileServices.create(reptile);
+    return await reptileServices.create(name, description, price, quantity);
   }
 }

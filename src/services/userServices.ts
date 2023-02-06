@@ -2,7 +2,6 @@ import { Repository } from "typeorm";
 import { User, UserRole } from "../entities/User";
 import { dataSource } from "../tools/utils";
 import * as argon2 from "argon2";
-import { ID } from "type-graphql";
 
 export const userRepository: Repository<User> = dataSource.getRepository(User);
 

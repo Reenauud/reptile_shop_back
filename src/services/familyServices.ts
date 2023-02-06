@@ -7,8 +7,8 @@ export const familyRepository: Repository<Family> =
   dataSource.getRepository(Family);
 
 export default {
-  create: async (Family: Family): Promise<Family> => {
-    return await familyRepository.save(Family);
+  create: async (family: Family): Promise<Family> => {
+    return await familyRepository.save(family);
   },
 
   getAll: async (): Promise<Family[]> => {

@@ -18,18 +18,19 @@ export class Reptile {
   @Column()
   name!: string;
 
-  @ManyToOne(() => Reptile, (reptiles) => reptiles.family)
-  family!: Family;
-
+  
   @Field()
   @Column()
   description!: string;
-
+  
   @Field()
   @Column()
   price!: number;
-
+  
   @Field()
   @Column()
   quantity!: number;
+
+  @ManyToOne(() => Reptile, (reptiles) => reptiles.family)
+  family?: Family;
 }
