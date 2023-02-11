@@ -4,7 +4,7 @@ import {
   Column,
   Entity,
   OneToMany,
-  JoinColumn,
+  JoinTable,
 } from "typeorm";
 import { Reptile } from "./Reptile";
 
@@ -18,6 +18,6 @@ export class Family {
   @Column()
   type!: string;
 
-  @OneToMany(() => Family, (family) => family.reptiles)
+  @OneToMany(() => Reptile, (reptiles) => reptiles.family, { cascade: true })
   reptiles?: Reptile[];
 }

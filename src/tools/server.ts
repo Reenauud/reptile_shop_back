@@ -10,6 +10,7 @@ async function createServer(): Promise<ApolloServer> {
   dotenv.config();
   await dataSource.initialize();
   const schema = await buildSchema({
+    validate: { forbidUnknownValues: false },
     resolvers: [UserResolver, ReptileResolvers, FamilyResolvers],
     //   authChecker: ({ context }, roles) => {
     //     console.log("CONTEXT", context);

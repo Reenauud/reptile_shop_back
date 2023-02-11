@@ -18,4 +18,9 @@ export default {
   getFamilyById: async (id: number): Promise<Family> => {
     return await familyRepository.findOneByOrFail({ id });
   },
+
+  getByType: async (type: string): Promise<Family> => {
+    return await familyRepository.findOneByOrFail({ type });
+  },
+
 };

@@ -11,4 +11,16 @@ export class FamilyResolvers {
   ): Promise<Family> {
     return await familyServices.create(family);
   }
+
+  @Query(() => Family)
+  async getOneFamily(
+    @Arg("type") type: string, 
+  ): Promise<Family> {
+    return await familyServices.getByType(type);
+  }
+
+  @Query(() => [Family])
+  async getAllFamilies(): Promise<Family[]> {
+    return await familyServices.getAll();
+  }
 }

@@ -31,6 +31,7 @@ export class Reptile {
   @Column()
   quantity!: number;
 
-  @ManyToOne(() => Reptile, (reptiles) => reptiles.family)
+  @Field()
+  @ManyToOne(() => Family, (family) => family.reptiles, { eager: true })
   family?: Family;
 }

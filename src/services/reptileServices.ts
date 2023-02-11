@@ -6,14 +6,14 @@ export const reptileRepository: Repository<Reptile> =
   dataSource.getRepository(Reptile);
 
 export default {
-  create: async (name: string, description: string, price: number, quantity: number ): Promise<Reptile> => {
-    const newReptile = new Reptile();
-    newReptile.name = name;
-    newReptile.description = description;
-    newReptile.price = price;
-    newReptile.quantity = quantity;
+  create: async (reptile: Reptile): Promise<Reptile> => {
+    // const newReptile = new Reptile();
+    // newReptile.name = name;
+    // newReptile.description = description;
+    // newReptile.price = price;
+    // newReptile.quantity = quantity;
 
-    return await reptileRepository.save(newReptile);
+    return await reptileRepository.save(reptile);
   },
 
   getAll: async (): Promise<Reptile[]> => {
