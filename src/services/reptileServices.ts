@@ -23,4 +23,8 @@ export default {
   getReptileById: async (id: number): Promise<Reptile> => {
     return await reptileRepository.findOneByOrFail({ id });
   },
-};
+
+  getReptileByName: async (name: string): Promise<Reptile> => {
+    return await reptileRepository.findOneByOrFail({ name });
+  },
+}

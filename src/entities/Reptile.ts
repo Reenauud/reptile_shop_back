@@ -18,7 +18,6 @@ export class Reptile {
   @Column()
   name!: string;
 
-  
   @Field()
   @Column()
   description!: string;
@@ -31,7 +30,8 @@ export class Reptile {
   @Column()
   quantity!: number;
 
-  @Field()
-  @ManyToOne(() => Family, (family) => family.reptiles, { eager: true })
+  @Field(() => Family)
+  @ManyToOne(() => Family, (family) => family.reptiles)
+  @JoinColumn({ name: "family_id"})
   family?: Family;
 }

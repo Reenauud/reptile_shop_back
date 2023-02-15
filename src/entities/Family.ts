@@ -4,8 +4,9 @@ import {
   Column,
   Entity,
   OneToMany,
-  JoinTable,
+  JoinColumn,
 } from "typeorm";
+import { CreateReptileInput } from "../inputs/CreateReptileInput";
 import { Reptile } from "./Reptile";
 
 @ObjectType()
@@ -18,6 +19,7 @@ export class Family {
   @Column()
   type!: string;
 
-  @OneToMany(() => Reptile, (reptiles) => reptiles.family, { cascade: true })
+  @Field(() => [Reptile])
+  @OneToMany(() => Reptile, (reptile) => reptile.family, { onDelete: "CASCADE", eager:true })
   reptiles?: Reptile[];
 }

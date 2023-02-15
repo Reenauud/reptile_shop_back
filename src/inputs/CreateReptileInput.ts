@@ -1,21 +1,19 @@
 import { InputType, Field } from "type-graphql";
+import "reflect-metadata"
 import { Family } from "../entities/Family";
 import { CreateFamilyInput } from "./CreateFamilyInput";
 
 @InputType()
 export class CreateReptileInput {
-    @Field()
+    @Field({ nullable: true })
     name!: string;
 
-    @Field()
+    @Field({ nullable: true })
     description!: string;
 
-    @Field()
+    @Field({ nullable: true })
     price!: number;
 
-    @Field()
+    @Field({ nullable: true })
     quantity!: number;
-
-    @Field()
-    family! : CreateFamilyInput;
 }
