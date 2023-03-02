@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
 import { Field, ObjectType } from "type-graphql";
+import { Order } from "./Order";
 
 export enum UserRole {
   ADMIN = "admin",
@@ -26,4 +27,7 @@ export class User {
 
   @Column()
   hashedPassword!: string;
+
+  @ManyToOne(() => Order, (order) => order.userId)
+  order?: Order;
 }
