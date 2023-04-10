@@ -28,7 +28,7 @@ export class UserResolver {
   @Query(() => User)
   async getUserById(@Arg("id") id: number): Promise<User> {
     try {
-      const users = await userRepository.findOneByOrFail({ id: id });
+      const users = await userRepository.findOneByOrFail({ id });
       return users;
     } catch (e: any) {
       throw new Error("Erreur en recherchant tous les utilisateurs");
@@ -38,10 +38,10 @@ export class UserResolver {
   async createUser(
     @Arg("email") email: string,
     @Arg("password") password: string,
-    @Arg("roles") roles: UserRole
+    @Arg("role") role: UserRole,
   ): Promise<User> {
     try {
-      const user = await userServices.create(roles, email, password);
+      const user = await userServices.create(role, email, password);
       return user;
     } catch (e: any) {
       throw new Error("Erreur pendant la création de l'utilisateur");
@@ -72,5 +72,12 @@ export class UserResolver {
     } catch (e) {
       throw new Error("Invalid credentials");
     }
+  }
+
+  @Mutation(() => String)
+  async deleteUser(
+    @Arg("email") email: string
+  ): Promise<string> {
+    return await userServices.delete(email);
   }
 }

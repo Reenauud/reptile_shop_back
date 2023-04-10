@@ -19,7 +19,7 @@ export class User {
     enum: UserRole,
     default: [UserRole.GHOST],
   })
-  roles!: UserRole;
+  role!: UserRole;
 
   @Field()
   @Column({ unique: true })

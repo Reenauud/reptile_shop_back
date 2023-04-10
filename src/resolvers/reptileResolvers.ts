@@ -1,12 +1,7 @@
 import { Query, Arg, Resolver, Mutation } from "type-graphql";
 import { Reptile } from "../entities/Reptile";
-import { Family } from "../entities/Family";
-import { CreateFamilyInput } from "../inputs/CreateFamilyInput";
 import { CreateReptileInput } from "../inputs/CreateReptileInput";
-import familyServices from "../services/familyServices";
-import reptileServices, {
-  reptileRepository,
-} from "../services/reptileServices";
+import reptileServices from "../services/reptileServices";
 
 @Resolver(Reptile)
 export class ReptileResolvers {

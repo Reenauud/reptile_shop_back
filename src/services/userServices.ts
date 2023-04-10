@@ -15,17 +15,25 @@ export default {
   },
 
   create: async (
-    roles: UserRole,
+    role: UserRole,
     email: string,
     password: string
   ): Promise<User> => {
     const newUser = new User();
-    newUser.roles = roles;
+    newUser.role = role;
     newUser.email = email;
     newUser.hashedPassword = await argon2.hash(password);
 
     console.log(newUser);
 
     return await userRepository.save(newUser);
+  },
+
+  delete: async (
+    email: string,
+  ): Promise<string> => {
+    const userToDelete = await userRepository.findOneByOrFail({ email });
+    await userRepository.delete(userToDelete);
+    return "ok";
   },
 };
