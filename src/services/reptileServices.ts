@@ -32,7 +32,7 @@ export default {
       type,
     });
     if (reptileToAdd === null || targetFamily === null) {
-      throw new Error("problème a l'ajout de la famille ");
+      throw new Error("Erreur à l'ajout de la famille ");
     }
     reptileToAdd.family = targetFamily;
     return await reptileRepository.save(reptileToAdd);

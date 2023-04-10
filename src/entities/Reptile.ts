@@ -24,7 +24,7 @@ export class Reptile {
   description!: string;
 
   @Field()
-  @Column("decimal", { scale: 2 })
+  @Column("decimal", { scale: 2, nullable: true })
   price!: number;
 
   @Field()
