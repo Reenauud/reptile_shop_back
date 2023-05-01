@@ -4,7 +4,7 @@ import { Food } from "../entities/Food";
 import { CreateFoodInput } from "../inputs/CreateFoodInput";
 
 @Resolver(Food)
-export class foodResolvers {
+export class FoodResolvers {
     @Mutation(() => Food)
   async createFood(
     @Arg("food") food: CreateFoodInput,
