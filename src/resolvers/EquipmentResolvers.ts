@@ -4,7 +4,7 @@ import { Equipment } from "../entities/Equipment";
 import { CreateEquipmentInput } from "../inputs/CreateEquipmentInput";
 
 @Resolver(Equipment)
-export class equipmentResolvers {
+export class EquipmentResolvers {
     @Mutation(() => Equipment)
   async createEquipment(
     @Arg("equipment") equipment: CreateEquipmentInput,
