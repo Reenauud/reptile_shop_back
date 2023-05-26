@@ -12,6 +12,7 @@ import { Reptile } from "./Reptile";
 @Entity()
 export class Food {
   @PrimaryGeneratedColumn()
+  @Field()
   id?: number;
 
   @Column()
@@ -26,6 +27,7 @@ export class Food {
   @Field()
   foodCategory!: string;
 
+  
   @ManyToMany(() => Reptile)
   @JoinTable()
   reptiles?: Reptile[];

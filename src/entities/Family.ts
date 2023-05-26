@@ -6,7 +6,6 @@ import {
   OneToMany,
   JoinColumn,
 } from "typeorm";
-import { CreateReptileInput } from "../inputs/CreateReptileInput";
 import { Reptile } from "./Reptile";
 
 @ObjectType()
