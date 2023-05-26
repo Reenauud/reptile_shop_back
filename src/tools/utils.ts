@@ -5,6 +5,7 @@ import { Family } from "../entities/Family";
 import { Order } from "../entities/Order";
 import { Food } from "../entities/Food";
 import { Equipment } from "../entities/Equipment";
+import { Category } from "../entities/Category";
 
 export const dataSource = new DataSource({
   type: "postgres",
@@ -14,5 +15,5 @@ export const dataSource = new DataSource({
   password: "example",
   database: "reptiles",
   synchronize: true,
-  entities: [User, Reptile, Family, Order, Food, Equipment],
+  entities: [User, Reptile, Family, Order, Food, Equipment, Category],
 });

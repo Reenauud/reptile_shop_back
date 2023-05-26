@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
-import { Family } from "../entities/Family";
 import { dataSource } from "../tools/utils";
+import { Family } from "../entities/Family";
 import { Reptile } from "../entities/Reptile";
 
 export const familyRepository: Repository<Family> =

@@ -11,4 +11,17 @@ export class FoodResolvers {
   ): Promise<Food> {
     return await foodServices.create(food);
   }
+
+    @Query(() => [Food])
+    async getFoodList()
+    : Promise<Food[]> {
+      console.log('ici');
+      try {
+        const foodList = await foodServices.getAll();
+        console.log(foodList);
+        return foodList;
+      } catch (err) {
+        throw new Error('Erreur en récupérant la liste des nourritures');
+      }
+    }
 }
