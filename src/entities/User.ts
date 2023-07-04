@@ -28,6 +28,6 @@ export class User {
   @Column()
   hashedPassword!: string;
 
-  @ManyToOne(() => Order, (order) => order.userId)
+  @ManyToOne(() => Order, (order: { userId: any; }) => order.userId)
   order?: Order;
 }

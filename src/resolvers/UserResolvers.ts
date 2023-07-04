@@ -6,6 +6,22 @@ import { userRepository } from "../services/userServices";
 
 @Resolver(User)
 export class UserResolver {
+
+  @Mutation(() => User)
+  async createUser(
+    @Arg("email") email: string,
+    @Arg("password") password: string,
+    @Arg("role") role: UserRole,
+  ): Promise<User> {
+    try {
+      const user = await userServices.create(role, email, password);
+      return user;
+    } catch (e: any) {
+      throw new Error("Erreur pendant la création de l'utilisateur");
+    }
+  }
+
+
   @Query(() => User)
   async getOneUser(@Arg("email") email: string): Promise<any> {
     try {
@@ -34,43 +50,32 @@ export class UserResolver {
       throw new Error("Erreur en recherchant tous les utilisateurs");
     }
   }
-  @Mutation(() => User)
-  async createUser(
-    @Arg("email") email: string,
-    @Arg("password") password: string,
-    @Arg("role") role: UserRole,
-  ): Promise<User> {
-    try {
-      const user = await userServices.create(role, email, password);
-      return user;
-    } catch (e: any) {
-      throw new Error("Erreur pendant la création de l'utilisateur");
-    }
-  }
+
 
   @Mutation(() => String)
   async getToken(
     @Arg("email") email: string,
     @Arg("password") password: string
-  ): Promise<String> {
+  ): Promise<String | undefined> {
     try {
       // Récupérer l'utilisateur dans la bdd suivant l'email
       const user = await userServices.getByEmail(email);
-      console.log(user);
+
       // Vérifier que ce sont les même mots de passe
       if (await authServices.verifyPassword(password, user.hashedPassword)) {
+        console.log(password, user.hashedPassword)
         // Créer un nouveau token => signer un token
         const token = authServices.signJwt({
           email: user.email,
-          id: user.id,
         });
 
-        return token;
+        return token
+
       } else {
         throw new Error();
       }
     } catch (e) {
-      throw new Error("Invalid credentials");
+      console.log("error", e)
     }
   }
 

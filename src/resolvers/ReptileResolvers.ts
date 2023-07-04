@@ -2,6 +2,9 @@ import { Query, Arg, Resolver, Mutation } from "type-graphql";
 import { Reptile } from "../entities/Reptile";
 import { CreateReptileInput } from "../inputs/CreateReptileInput";
 import reptileServices from "../services/reptileServices";
+import { REFUSED } from "dns";
+import { Category } from "../entities/Category";
+import { CreateCategoryInput } from "../inputs/CreateCategoryInput";
 
 @Resolver(Reptile)
 export class ReptileResolvers {
@@ -22,10 +25,11 @@ export class ReptileResolvers {
 
   @Mutation(() => Reptile)
   async createReptile(
-    @Arg("reptile") reptile: CreateReptileInput
+    @Arg("reptile") reptile: CreateReptileInput,
+    @Arg("category") category  : CreateCategoryInput
   ): Promise<Reptile> {
-    console.log(reptile);
-    return await reptileServices.create(reptile);
+    console.log(reptile)
+    return await reptileServices.create(reptile, category);
   }
 
   @Mutation(() => Reptile)

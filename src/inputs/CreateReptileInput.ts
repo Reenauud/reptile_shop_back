@@ -1,5 +1,9 @@
 import { InputType, Field } from "type-graphql";
 import "reflect-metadata"
+import { Category } from "../entities/Category";
+import { CreateCategoryInput } from "./CreateCategoryInput";
+// import { CreateCategoryInput } from "./CreateCategoryInput";
+// import { Category } from "../entities/Category";
 
 @InputType()
 export class CreateReptileInput {
@@ -14,4 +18,9 @@ export class CreateReptileInput {
 
     @Field({ nullable: true })
     quantity!: number;
+
+
+
+
+
 }

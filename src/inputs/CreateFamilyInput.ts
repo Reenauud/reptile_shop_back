@@ -7,4 +7,6 @@ import { CreateReptileInput } from "./CreateReptileInput";
 export class CreateFamilyInput {
     @Field({ nullable: true })
     type!: string;
+
+
 }

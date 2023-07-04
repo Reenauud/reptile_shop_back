@@ -1,9 +1,8 @@
 #DEV
-FROM node:16
+FROM node:18
 
 WORKDIR /api
 COPY package.json ./
-COPY package-lock.json ./
 
 RUN npm install
 

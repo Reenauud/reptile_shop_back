@@ -11,4 +11,10 @@ export class FoodResolvers {
   ): Promise<Food> {
     return await foodServices.create(food);
   }
+
+  @Query(() => [Food])
+  async getAllFood(): Promise<Food[]> {
+    return await foodServices.getAll();
+  }
+
 }

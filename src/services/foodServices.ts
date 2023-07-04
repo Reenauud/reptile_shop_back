@@ -8,4 +8,8 @@ export default {
     create: async (food: Food): Promise<Food> => {
         return await foodRepository.save(food);
       },
+      
+      getAll: async (): Promise<Food[]> => {
+        return await foodRepository.find();
+      },
 }
