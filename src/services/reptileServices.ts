@@ -3,19 +3,27 @@ import { Reptile } from "../entities/Reptile";
 import { dataSource } from "../tools/utils";
 import { Family } from "../entities/Family";
 import { familyRepository } from "./familyServices";
-import { Category } from "../entities/Category";
+import { Category, CategoryName } from "../entities/Category";
+import categoryServices, { categoryRepository } from "./categoryServices";
 
 export const reptileRepository: Repository<Reptile> =
   dataSource.getRepository(Reptile);
 
 export default {
-  create: async (reptile: Reptile , category: Category): Promise<Reptile> => {
+  create: async (reptile: Reptile ): Promise<Reptile> => {
+
+    // const addToCategory : Category = await categoryRepository.getByName({
+    //   categoryName: Category
+    // }) 
+    // const category = await categoryRepository.find()
+
     const newReptile = new Reptile()
     newReptile.name = reptile.name
     newReptile.description = reptile.description
     newReptile.price = reptile.price
     newReptile.quantity = reptile.quantity
-    newReptile.category = category
+    newReptile.category = reptile.category
+    // newReptile.category = reptile.category
     return await reptileRepository.save(newReptile);
   },
 

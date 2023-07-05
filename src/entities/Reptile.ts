@@ -44,11 +44,10 @@ export class Reptile {
   family?: Family;
 
 
-  @Field(()=> Category)
-  @ManyToOne(() => Category, (category) => category.reptiles, {cascade : ["insert"]})
+  // @ManyToOne(() => Category, (category) => category.reptiles, {cascade : ["insert"]})
+  @ManyToOne(() => Category, (category) => category.reptiles)
   // @JoinColumn({name: "category_id"})
-  category?: Category;
-
+  category?: number;
 
   @ManyToOne(() => Order, (order) => order.reptileId)
   order?: Order;

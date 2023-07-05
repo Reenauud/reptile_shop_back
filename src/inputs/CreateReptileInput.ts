@@ -19,8 +19,8 @@ export class CreateReptileInput {
     @Field({ nullable: true })
     quantity!: number;
 
-
-
+    @Field({nullable: true})
+    category? : number;
 
 
 }

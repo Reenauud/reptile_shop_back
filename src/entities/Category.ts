@@ -34,4 +34,10 @@ export class Category{
 
   @OneToMany(() => Reptile, (reptile) => reptile.category)
   reptiles?: Reptile[];
+
+  // addCategory(category: Category){
+  //   if(this.category == null){
+  //     this.category = Array<Category>()
+  //   }
+  // }
 }
