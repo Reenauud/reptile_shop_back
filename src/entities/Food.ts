@@ -27,8 +27,8 @@ export class Food {
   @Field()
   foodCategory!: string;
 
-  
-  @ManyToMany(() => Reptile)
+  @Field(() => Reptile)
+  @ManyToMany(() => Reptile, (reptile) => reptile.food, { eager: true })
   @JoinTable()
-  reptiles?: Reptile[];
+  reptiles?: Reptile;
 }

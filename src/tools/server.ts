@@ -5,17 +5,18 @@ import { buildSchema } from "type-graphql";
 import authServices from "../services/authServices";
 import { UserResolver } from "../resolvers/UserResolvers";
 import { ReptileResolvers } from "../resolvers/ReptileResolvers";
-import { FamilyResolvers } from "../resolvers/FamilyResolvers";
 import { FoodResolvers } from "../resolvers/FoodResolvers";
 import { EquipmentResolvers } from "../resolvers/EquipmentResolvers";
 import { CategoryResolvers } from "../resolvers/CategoryResolvers";
+import { StripeResolvers } from "../resolvers/StripeResolvers";
+import { UpkeepResolvers } from "../resolvers/UpkeepResolvers";
 
 async function createServer(): Promise<ApolloServer> {
   dotenv.config();
   await dataSource.initialize();
   const schema = await buildSchema({
     validate: { forbidUnknownValues: false },
-    resolvers: [UserResolver, ReptileResolvers, FamilyResolvers, FoodResolvers, EquipmentResolvers, CategoryResolvers],
+    resolvers: [UserResolver, ReptileResolvers, FoodResolvers, EquipmentResolvers, CategoryResolvers, StripeResolvers, UpkeepResolvers],
       authChecker: ({ context }, roles) => {
         console.log("CONTEXT", context);
         console.log("ROLES", roles);
