@@ -23,6 +23,7 @@ export default {
     newReptile.price = reptile.price
     newReptile.quantity = reptile.quantity
     newReptile.category = reptile.category
+    newReptile.photoId = reptile.photoId
     // newReptile.category = reptile.category
     return await reptileRepository.save(newReptile);
   },

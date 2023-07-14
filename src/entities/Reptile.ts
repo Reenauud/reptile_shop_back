@@ -38,6 +38,10 @@ export class Reptile {
   @Column()
   quantity!: number;
 
+  @Field()
+  @Column({nullable: true})
+  photoId?: string;
+
   @Field(() => Family)
   @ManyToOne(() => Family, (family) => family.reptiles)
   @JoinColumn({ name: "family_id" })
@@ -48,6 +52,7 @@ export class Reptile {
   @ManyToOne(() => Category, (category) => category.reptiles)
   // @JoinColumn({name: "category_id"})
   category?: number;
+
 
   @ManyToOne(() => Order, (order) => order.reptileId)
   order?: Order;

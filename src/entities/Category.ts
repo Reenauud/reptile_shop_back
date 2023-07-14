@@ -21,6 +21,10 @@ export class Category{
     @PrimaryGeneratedColumn()
     id?: number
 
+    @Field()
+    @Column()
+    categoryImage!: string;
+
 
     @Field()
     @Column({
@@ -29,11 +33,15 @@ export class Category{
         unique: true,
       })
       categoryName!: string;
+
+
+
   
 
 
   @OneToMany(() => Reptile, (reptile) => reptile.category)
   reptiles?: Reptile[];
+
 
   // addCategory(category: Category){
   //   if(this.category == null){

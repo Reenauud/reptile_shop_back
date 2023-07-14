@@ -11,6 +11,9 @@ export class CreateCategoryInput{
 
     // @Field({ nullable: true })
     // reptile!: Reptile
+    
+    @Field()
+    categoryImage!: string;
 
 
 
