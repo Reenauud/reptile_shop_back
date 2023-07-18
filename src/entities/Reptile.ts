@@ -6,11 +6,12 @@ import {
   JoinColumn,
   ManyToMany,
   JoinTable,
-  OneToMany,
+  OneToOne,
 } from "typeorm";
 import { ObjectType, Field } from "type-graphql";
 import { Family } from "./Family";
 import { Order } from "./Order";
+import { Upkeep } from "./Upkeep";
 import { Category } from "./Category";
 import { CreateCategoryInput } from "../inputs/CreateCategoryInput";
 // import {Category} from "./Category"
@@ -46,6 +47,11 @@ export class Reptile {
   @ManyToOne(() => Family, (family) => family.reptiles)
   @JoinColumn({ name: "family_id" })
   family?: Family;
+
+  @Field(() => Upkeep)
+  @OneToOne(() => Upkeep, (upkeep) => upkeep.reptileId, { cascade: true, onUpdate: "CASCADE", eager: true })
+  @JoinColumn({ name: "upkeep_id"})
+  upkeep?: Upkeep;
 
 
   // @ManyToOne(() => Category, (category) => category.reptiles, {cascade : ["insert"]})
