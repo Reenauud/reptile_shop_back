@@ -27,7 +27,7 @@ export class CreateReptileInput {
     // category? : number;
 
     @Field({nullable: true})
-    photoId? : string;
+    photoId! : string;
 
 
 }
