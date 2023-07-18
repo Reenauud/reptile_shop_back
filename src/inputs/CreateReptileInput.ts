@@ -3,8 +3,12 @@ import "reflect-metadata"
 
 @InputType()
 export class CreateReptileInput {
+
     @Field({ nullable: true })
     name!: string;
+
+    @Field({ nullable: true })
+    scientificName!: string;
 
     @Field({ nullable: true })
     description!: string;

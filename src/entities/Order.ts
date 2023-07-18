@@ -5,10 +5,13 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  ManyToMany,
 } from "typeorm";
 
 import { User } from "./User";
 import { Reptile } from "./Reptile";
+import { Food } from "./Food";
+import { Equipment } from "./Equipment";
 
 @ObjectType()
 @Entity()
@@ -20,9 +23,17 @@ export class Order {
   @ManyToOne(() => User)
   userId?: User;
 
-  @Field(() => Reptile)
-  @ManyToOne(() => Reptile)
+  @Field(() => Reptile, { nullable: true})
+  @ManyToMany(() => Reptile)
   reptileId?: Reptile;
+
+  @Field(() => Food, { nullable: true})
+  @ManyToMany(() => Food)
+  foodId?: Food;
+
+  @Field(() => Equipment, { nullable: true})
+  @ManyToMany(() => Equipment)
+  equipmentId?: Equipment;
 
   @Column()
   totalPrice?: number;

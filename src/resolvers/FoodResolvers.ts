@@ -11,4 +11,27 @@ export class FoodResolvers {
   ): Promise<Food> {
     return await foodServices.create(food);
   }
+
+    @Query(() => [Food])
+    async getFoodList()
+    : Promise<Food[]> {
+      try {
+        const foodList = await foodServices.getAll();
+        return foodList;
+      } catch (err) {
+        throw new Error("Erreur en récupérant la liste des nourritures");
+      }
+    }
+
+    @Query(() => [Food])
+    async getFoodFiltered(
+      @Arg("filter") filter: string,
+    ): Promise<Food[]> {
+      try {
+        let foodList = await foodServices.getFoodByFilter(filter);
+        return foodList.length > 0 ? foodList : [];
+      } catch (err) {
+        throw new Error("Erreur en recherchant la liste de nourriture avec filtre");
+      }
+    }
 }
