@@ -51,7 +51,7 @@ export class Reptile {
   // @ManyToOne(() => Category, (category) => category.reptiles, {cascade : ["insert"]})
   @ManyToOne(() => Category, (category) => category.reptiles)
   // @JoinColumn({name: "category_id"})
-  category?: number;
+  category?: Category;
 
 
   @ManyToOne(() => Order, (order) => order.reptileId)

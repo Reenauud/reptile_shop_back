@@ -10,19 +10,23 @@ export const reptileRepository: Repository<Reptile> =
   dataSource.getRepository(Reptile);
 
 export default {
-  create: async (reptile: Reptile ): Promise<Reptile> => {
+  create: async (reptile: Reptile, categoryId : number ): Promise<Reptile> => {
 
     // const addToCategory : Category = await categoryRepository.getByName({
     //   categoryName: Category
     // }) 
     // const category = await categoryRepository.find()
+    const category = await categoryRepository.findOneByOrFail({
+
+id: categoryId
+    })
 
     const newReptile = new Reptile()
     newReptile.name = reptile.name
     newReptile.description = reptile.description
     newReptile.price = reptile.price
     newReptile.quantity = reptile.quantity
-    newReptile.category = reptile.category
+    newReptile.category = category
     newReptile.photoId = reptile.photoId
     // newReptile.category = reptile.category
     return await reptileRepository.save(newReptile);
@@ -38,6 +42,17 @@ export default {
 
   getReptileByName: async (name: string): Promise<Reptile> => {
     return await reptileRepository.findOneByOrFail({ name });
+  },
+
+  getReptilesByCategory: async (catergoryId : number): Promise<Reptile[]> => {
+    const category = await categoryRepository.findOneByOrFail({id: catergoryId})
+    if(category === null){
+      throw new Error("la categorie n'existe pas")
+    }
+    return await reptileRepository.findBy({
+      category
+
+    })
   },
 
   addToFamily: async (name: string, type: string): Promise<Reptile> => {
