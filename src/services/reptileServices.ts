@@ -28,6 +28,7 @@ id: categoryId
     newReptile.quantity = reptile.quantity
     newReptile.category = category
     newReptile.photoId = reptile.photoId
+    newReptile.scientificName = reptile.scientificName
     // newReptile.category = reptile.category
     return await reptileRepository.save(newReptile);
   },
