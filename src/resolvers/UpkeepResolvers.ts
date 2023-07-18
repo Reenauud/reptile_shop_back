@@ -1,7 +1,7 @@
 import { Query, Arg, Resolver, Mutation } from "type-graphql";
 import upkeepServices from "../services/upkeepServices";
 import { Upkeep } from "../entities/Upkeep";
-import { CreateUpkeepInput } from "../inputs/CreateUpkeepInputs";
+import { CreateUpkeepInput } from "../inputs/CreateUpkeepInput";
 import { Reptile } from "../entities/Reptile";
 
 @Resolver(Upkeep)

@@ -2,13 +2,12 @@ import { ApolloServer } from "apollo-server";
 import { dataSource } from "./utils";
 import * as dotenv from "dotenv";
 import { buildSchema } from "type-graphql";
+import authServices from "../services/authServices";
 import { UserResolver } from "../resolvers/UserResolvers";
 import { ReptileResolvers } from "../resolvers/ReptileResolvers";
-import { FamilyResolvers } from "../resolvers/FamilyResolvers";
 import { FoodResolvers } from "../resolvers/FoodResolvers";
 import { EquipmentResolvers } from "../resolvers/EquipmentResolvers";
-import authServices from "../services/authServices";
-import { CategoryResolvers } from "../resolvers/CategoryResolver";
+import { CategoryResolvers } from "../resolvers/CategoryResolvers";
 import { StripeResolvers } from "../resolvers/StripeResolvers";
 import { UpkeepResolvers } from "../resolvers/UpkeepResolvers";
 
@@ -47,7 +46,7 @@ async function createServer(): Promise<ApolloServer> {
 
             return { user: userPayload };
           } catch (e) {
-            console.log("error", e);
+            console.log(e);
             return {};
           }
         }

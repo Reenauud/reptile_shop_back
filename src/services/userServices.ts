@@ -15,14 +15,14 @@ export default {
   },
 
   create: async (
-    role: UserRole,
     email: string,
-    password: string
+    password: string,
+
   ): Promise<User> => {
     const newUser = new User();
-    newUser.role = role;
     newUser.email = email;
     newUser.hashedPassword = await argon2.hash(password);
+    newUser.role = UserRole.USER;
 
     console.log(newUser);
 

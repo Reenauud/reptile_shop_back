@@ -1,10 +1,10 @@
 import { Repository } from "typeorm";
-import { Reptile } from "../entities/Reptile";
 import { dataSource } from "../tools/utils";
-import { Family } from "../entities/Family";
-import { familyRepository } from "./familyServices";
+import { Reptile } from "../entities/Reptile";
 import { Category, CategoryName } from "../entities/Category";
-import categoryServices, { categoryRepository } from "./categoryServices";
+import { categoryRepository } from "./categoryServices";
+import { upkeepRepository } from "./upkeepServices";
+import { Upkeep } from "../entities/Upkeep";
 
 export const reptileRepository: Repository<Reptile> =
   dataSource.getRepository(Reptile);
@@ -44,28 +44,56 @@ id: categoryId
     return await reptileRepository.findOneByOrFail({ name });
   },
 
-  getReptilesByCategory: async (catergoryId : number): Promise<Reptile[]> => {
-    const category = await categoryRepository.findOneByOrFail({id: catergoryId})
-    if(category === null){
-      throw new Error("la categorie n'existe pas")
-    }
-    return await reptileRepository.findBy({
-      category
+  // getReptilesByCategory: async (catergoryId : number): Promise<Reptile[]> => {
+  //   const category = await categoryRepository.findOneByOrFail({id: catergoryId})
+  //   if(category === null){
+  //     throw new Error("la categorie n'existe pas")
+  //   }
+  //   return await reptileRepository.findBy({
+  //     category
 
-    })
+  //   })
+  // },
+
+  getReptilesByCategory: async (categoryName: CategoryName): Promise<Reptile[]> => {
+    const targetCategory = await categoryRepository.findOneByOrFail({ categoryName });
+    return await reptileRepository.findBy({ category: targetCategory })
   },
 
-  addToFamily: async (name: string, type: string): Promise<Reptile> => {
+  addToCategory: async (name: string, categoryName: CategoryName): Promise<Reptile> => {
     const reptileToAdd: Reptile = await reptileRepository.findOneByOrFail({
       name,
     });
-    const targetFamily: Family = await familyRepository.findOneByOrFail({
-      type,
+    const targetCategory: Category = await categoryRepository.findOneByOrFail({
+      categoryName
     });
-    if (reptileToAdd === null || targetFamily === null) {
-      throw new Error("Erreur à l'ajout de la famille ");
+    if (reptileToAdd === null || targetCategory === null) {
+      throw new Error("Erreur à l'ajout de la catégorie.");
     }
-    reptileToAdd.family = targetFamily;
+    reptileToAdd.category = targetCategory;
     return await reptileRepository.save(reptileToAdd);
+  },
+
+  link: async (reptileId: number, upkeepId: number) => {
+    const reptile: Reptile = await reptileRepository.findOneByOrFail({ id: reptileId });
+    const upkeep: Upkeep = await upkeepRepository.findOneByOrFail({ id: upkeepId });
+    reptile.upkeep = upkeep;
+    return await reptileRepository.save(reptile);
+  },
+
+  update: async (reptileId: number, name: string) => {
+    await dataSource
+    .createQueryBuilder()
+    .update(Reptile)
+    .set({ name: name })
+    .where("id = :id", { id: reptileId })
+    .execute()
+    return await reptileRepository.findOneByOrFail({ id: reptileId});
+  },
+
+  findAnimalWithUpkeep: async (animal: string) => {
+    const reptile = await reptileRepository.findOneByOrFail({ name: animal });
+    //const upkeep = await upkeepRepository.findOneByOrFail({ reptileId: reptile });
+    return reptile;
   },
 };

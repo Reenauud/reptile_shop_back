@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { dataSource } from "../tools/utils";
-import { CreateUpkeepInput } from "../inputs/CreateUpkeepInputs";
+import { CreateUpkeepInput } from "../inputs/CreateUpkeepInput";
 import { Upkeep } from "../entities/Upkeep";
 import { reptileRepository } from "./reptileServices";
 import { Reptile } from "../entities/Reptile";

@@ -14,7 +14,7 @@ export class UserResolver {
     @Arg("role") role: UserRole,
   ): Promise<User> {
     try {
-      const user = await userServices.create(role, email, password);
+      const user = await userServices.create(email, password);
       return user;
     } catch (e: any) {
       throw new Error("Erreur pendant la création de l'utilisateur");
@@ -50,7 +50,6 @@ export class UserResolver {
       throw new Error("Erreur en recherchant tous les utilisateurs");
     }
   }
-
 
   @Mutation(() => String)
   async getToken(

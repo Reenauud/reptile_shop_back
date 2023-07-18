@@ -5,27 +5,28 @@ import {
   ManyToOne,
   JoinColumn,
   ManyToMany,
-  JoinTable,
   OneToOne,
 } from "typeorm";
 import { ObjectType, Field } from "type-graphql";
-import { Family } from "./Family";
-import { Order } from "./Order";
-import { Upkeep } from "./Upkeep";
 import { Category } from "./Category";
-import { CreateCategoryInput } from "../inputs/CreateCategoryInput";
-// import {Category} from "./Category"
-// import { CreateCategoryInput } from "../inputs/CreateCategoryInput";
+import { Order } from "./Order";
+import { Food } from "./Food";
+import { Upkeep } from "./Upkeep";
 
 @ObjectType()
 @Entity()
 export class Reptile {
   @PrimaryGeneratedColumn()
+  @Field()
   id?: number;
 
   @Field()
   @Column()
   name!: string;
+
+  @Field()
+  @Column()
+  scientificName!: string;
 
   @Field()
   @Column()
@@ -40,26 +41,23 @@ export class Reptile {
   quantity!: number;
 
   @Field()
-  @Column({nullable: true})
-  photoId?: string;
-
-  @Field(() => Family)
-  @ManyToOne(() => Family, (family) => family.reptiles)
-  @JoinColumn({ name: "family_id" })
-  family?: Family;
+  @Column()
+  photoId!: string
 
   @Field(() => Upkeep)
   @OneToOne(() => Upkeep, (upkeep) => upkeep.reptileId, { cascade: true, onUpdate: "CASCADE", eager: true })
   @JoinColumn({ name: "upkeep_id"})
   upkeep?: Upkeep;
 
-
-  // @ManyToOne(() => Category, (category) => category.reptiles, {cascade : ["insert"]})
-  @ManyToOne(() => Category, (category) => category.reptiles)
-  // @JoinColumn({name: "category_id"})
+  @Field(() => Category)
+  @ManyToOne(() => Category, (category) => category.reptiles, {cascade: ["insert"]})
+  @JoinColumn({ name: "category_id" })
   category?: Category;
 
+  @ManyToMany(() => Food, (food) => food.reptiles, {onDelete: "CASCADE"})
+  @JoinColumn({ name: "food_id"})
+  food?: Food;
 
-  @ManyToOne(() => Order, (order) => order.reptileId)
+  @ManyToMany(() => Order, (order) => order.reptileId)
   order?: Order;
 }

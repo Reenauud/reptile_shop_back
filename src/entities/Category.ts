@@ -1,51 +1,32 @@
-import { Field, ObjectType } from "type-graphql";
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { ObjectType, Field } from "type-graphql";
+import {
+  PrimaryGeneratedColumn,
+  Column,
+  Entity,
+  OneToMany,
+  JoinColumn,
+} from "typeorm";
 import { Reptile } from "./Reptile";
-import { CreateReptileInput } from "../inputs/CreateReptileInput";
-
 
 export enum CategoryName {
-    SNAKE = "Serpents",
-    AMPH = "Amphibiens",
-    LIZARD = "Lezards",
-    TORTLE = "Tortues",
-    INVERT = "Invertébrés"
-  }
+  SNAKE = 'Serpents',
+  AMPH = 'Amphibiens',
+  TORT = 'Tortues',
+  LIZ = 'Lézards',
+  INV = 'Invertébrés',
+}
 
 @ObjectType()
 @Entity()
-
-export class Category{
-
-  @Field()
+export class Category {
     @PrimaryGeneratedColumn()
-    id?: number
+    @Field()
+    id?: number;
 
     @Field()
-    @Column()
-    categoryImage!: string;
+    @Column({ unique: true, type: "enum", enum: CategoryName })
+    categoryName!: CategoryName;
 
-
-    @Field()
-    @Column({
-        type: "enum",
-        enum: CategoryName,
-        unique: true,
-      })
-      categoryName!: string;
-
-
-
-  
-
-
-  @OneToMany(() => Reptile, (reptile) => reptile.category)
-  reptiles?: Reptile[];
-
-
-  // addCategory(category: Category){
-  //   if(this.category == null){
-  //     this.category = Array<Category>()
-  //   }
-  // }
-}
+    @OneToMany(() => Reptile, (reptiles) => reptiles.category, { onDelete: "CASCADE" })
+    reptiles?: Reptile[];
+}   
