@@ -8,4 +8,7 @@ export default {
     create: async (equipment: Equipment): Promise<Equipment> => {
         return await equipmentRepository.save(equipment);
       },
+    getAll: async (): Promise<Equipment[]> => {
+        return await equipmentRepository.find();
+    },
 }

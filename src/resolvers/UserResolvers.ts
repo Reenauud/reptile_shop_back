@@ -38,10 +38,9 @@ export class UserResolver {
   async createUser(
     @Arg("email") email: string,
     @Arg("password") password: string,
-    @Arg("role") role: UserRole,
   ): Promise<User> {
     try {
-      const user = await userServices.create(role, email, password);
+      const user = await userServices.create(email, password);
       return user;
     } catch (e: any) {
       throw new Error("Erreur pendant la création de l'utilisateur");
