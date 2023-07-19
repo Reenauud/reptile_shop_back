@@ -27,6 +27,10 @@ export class Category {
     @Column({ unique: true, type: "enum", enum: CategoryName })
     categoryName!: CategoryName;
 
+    @Field()
+    @Column({nullable: true})
+    categoryImage?: string
+
     @OneToMany(() => Reptile, (reptiles) => reptiles.category, { onDelete: "CASCADE" })
     reptiles?: Reptile[];
 }   
