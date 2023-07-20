@@ -27,6 +27,10 @@ export class Food {
   @Field()
   foodCategory!: string;
 
+  @Field()
+  @Column({ nullable: true})
+  foodPicture!: string;
+
   @Field(() => Reptile)
   @ManyToMany(() => Reptile, (reptile) => reptile.food, { eager: true })
   @JoinTable()

@@ -14,6 +14,9 @@ export class CreateReptileInput {
     description!: string;
 
     @Field({ nullable: true })
+    animalPicture!: string;
+
+    @Field({ nullable: true })
     price!: number;
 
     @Field({ nullable: true })
