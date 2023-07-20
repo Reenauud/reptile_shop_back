@@ -34,5 +34,9 @@ describe("Reptile resolver", () => {
 
     expect(response.errors).toBeUndefined();
     expect(response.data?.createReptile).toBeDefined();
+    
+    await server.stop();
+    await new Promise(resolve => setTimeout(() => resolve(''), 500)); // avoid jest open handle error
   })
+
 });

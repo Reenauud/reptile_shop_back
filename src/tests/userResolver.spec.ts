@@ -63,6 +63,9 @@ describe("User resolver", () => {
 
     expect(response.errors).toBeUndefined();
     expect(response.data?.deleteUser).toBeDefined();
+
+    await server.stop();
+    await new Promise(resolve => setTimeout(() => resolve(''), 500)); // avoid jest open handle error
   })
 
   
