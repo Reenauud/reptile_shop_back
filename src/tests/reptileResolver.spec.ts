@@ -19,6 +19,7 @@ describe("Reptile resolver", () => {
 
     const reptile = {
         name: "Boa",
+        scientificName: "Boa constrictor",
         description: "7 mètres",
         price: 300.00,
         quantity: 1,
