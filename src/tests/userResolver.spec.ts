@@ -1,6 +1,5 @@
 import { ApolloServer, gql } from "apollo-server";
 import createServer from "../tools/server";
-import { UserRole } from "../entities/User";
 
 describe("User resolver", () => {
   let server: ApolloServer;
@@ -11,8 +10,8 @@ describe("User resolver", () => {
 
   it("should create a user", async () => {
     const createUserMutation = gql`
-    mutation CreateUser($email: String!, $password: String!, $role: String!) {
-      createUser(email: $email, password: $password, role: $role) {
+    mutation CreateUser($email: String!, $password: String!) {
+      createUser(email: $email, password: $password) {
         email
       }
     }
@@ -21,9 +20,8 @@ describe("User resolver", () => {
     const response = await server.executeOperation({
       query: createUserMutation,
       variables: {
-        email: "dieumegadmin@gmail.fr",
+        email: "greg.dieum@gmail.fr",
         password: "1234",
-        role: UserRole.ADMIN,
       },
     });
 
@@ -42,7 +40,7 @@ describe("User resolver", () => {
       query: getTokenMutation,
       variables: {
         password: "1234",
-        email: "dieumegadmin@gmail.fr",
+        email: "greg.dieum@gmail.fr",
       },
     });
 
@@ -59,7 +57,7 @@ describe("User resolver", () => {
     const response = await server.executeOperation({
       query: deleteUserMutation,
       variables: {
-        email: "dieumegadmin@gmail.fr",
+        email: "greg.dieum@gmail.fr",
       }
     })
 
