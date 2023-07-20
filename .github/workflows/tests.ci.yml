@@ -48,5 +48,5 @@ jobs:
           DB_USER_TEST: test
           DB_PASSWORD_TEST: test
           DB_NAME_TEST: reptiles-test
-          # JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
         run: export NODE_ENV=test && npm run test
