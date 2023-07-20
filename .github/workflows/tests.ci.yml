@@ -17,7 +17,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: test
           POSTGRES_USER: test
-          POSTGRES_DB: practice-reptiles-test
+          POSTGRES_DB: reptiles-test
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -47,6 +47,6 @@ jobs:
           DB_HOST: db
           DB_USER_TEST: test
           DB_PASSWORD_TEST: test
-          DB_NAME_TEST: practice-reptiles-test
+          DB_NAME_TEST: reptiles-test
           # JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
         run: export NODE_ENV=test && npm run test
