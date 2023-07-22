@@ -9,6 +9,7 @@ import {
 @Entity()
 export class Equipment {
   @PrimaryGeneratedColumn()
+  @Field()
   id?: number;
 
   @Field()
@@ -26,4 +27,8 @@ export class Equipment {
   @Field()
   @Column()
   equipmentDetails!: string;
+
+  @Field()
+  @Column({ nullable: true})
+  equipmentPicture!: string;
 }

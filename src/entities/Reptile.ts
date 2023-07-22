@@ -33,6 +33,10 @@ export class Reptile {
   description!: string;
 
   @Field()
+  @Column({ nullable: true})
+  animalPicture!: string;
+
+  @Field()
   @Column("decimal", { scale: 2, nullable: true })
   price!: number;
 

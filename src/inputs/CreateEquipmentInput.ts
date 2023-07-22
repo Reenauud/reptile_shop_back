@@ -14,4 +14,7 @@ export class CreateEquipmentInput {
 
     @Field()
     equipmentDetails!: string;
+
+    @Field()
+    equipmentPicture!: string;
 }

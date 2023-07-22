@@ -19,6 +19,7 @@ describe("Reptile resolver", () => {
 
     const reptile = {
         name: "Boa",
+        scientificName: "Boa constrictor",
         description: "7 mètres",
         price: 300.00,
         quantity: 1,
@@ -33,5 +34,9 @@ describe("Reptile resolver", () => {
 
     expect(response.errors).toBeUndefined();
     expect(response.data?.createReptile).toBeDefined();
+    
+    await server.stop();
+    await new Promise(resolve => setTimeout(() => resolve(''), 500)); // avoid jest open handle error
   })
+
 });
