@@ -33,12 +33,24 @@ export class Reptile {
   description!: string;
 
   @Field()
-  @Column({ nullable: true})
-  animalPicture!: string;
-
-  @Field()
   @Column("decimal", { scale: 2, nullable: true })
   price!: number;
+
+  @Field()
+  @Column()
+  nightTemp!: string;
+
+  @Field()
+  @Column()
+  nightHumidity!: string;
+
+  @Field()
+  @Column()
+  dayTemp!: string;
+
+  @Field()
+  @Column()
+  dayHumidity!: string
 
   @Field()
   @Column()
@@ -54,7 +66,7 @@ export class Reptile {
   upkeep?: Upkeep;
 
   @Field(() => Category)
-  @ManyToOne(() => Category, (category) => category.reptiles, {cascade: ["insert"]})
+  @ManyToOne(() => Category, (category) => category.reptiles, {cascade: ["insert"], eager:true})
   @JoinColumn({ name: "category_id" })
   category?: Category;
 

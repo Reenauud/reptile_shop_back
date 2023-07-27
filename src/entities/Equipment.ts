@@ -32,3 +32,4 @@ export class Equipment {
   @Column({ nullable: true})
   equipmentPicture!: string;
 }
+

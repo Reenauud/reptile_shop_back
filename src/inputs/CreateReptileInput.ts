@@ -23,6 +23,18 @@ export class CreateReptileInput {
     @Field({ nullable: true })
     price!: number;
 
+    @Field({nullable: true})
+    nightTemp!: string;
+
+    @Field({nullable:true})
+    nightHumidity!: string;
+
+    @Field({nullable: true})
+    dayTemp!: string;
+
+    @Field({nullable: true})
+    dayHumidity!: string;
+
     @Field({ nullable: true })
     quantity!: number;
 

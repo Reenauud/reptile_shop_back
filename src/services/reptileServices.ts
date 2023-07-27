@@ -29,6 +29,10 @@ id: categoryId
     newReptile.category = category
     newReptile.photoId = reptile.photoId
     newReptile.scientificName = reptile.scientificName
+    newReptile.dayHumidity = reptile.dayHumidity
+    newReptile.dayTemp = reptile.dayTemp
+    newReptile.nightTemp = reptile.nightTemp
+    newReptile.nightHumidity = reptile.nightHumidity
     // newReptile.category = reptile.category
     return await reptileRepository.save(newReptile);
   },
