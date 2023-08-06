@@ -19,7 +19,7 @@ export default {
     }
 
     return jwt.sign(payload, process.env.JWT_SECRET_KEY, {
-      expiresIn: 60 * 60,
+      expiresIn: 600 * 600,
     })
     ;
   },

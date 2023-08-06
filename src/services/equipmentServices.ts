@@ -6,7 +6,20 @@ export const equipmentRepository: Repository<Equipment> = dataSource.getReposito
 
 export default {
     create: async (equipment: Equipment): Promise<Equipment> => {
-        return await equipmentRepository.save(equipment);
+
+        const newEquipment = new Equipment()
+
+        newEquipment.equipmentDescription = equipment.equipmentDescription
+        newEquipment.equipmentDetails = equipment.equipmentDetails
+        newEquipment.equipmentName = equipment.equipmentName
+        newEquipment.equipmentPicture = equipment.equipmentPicture
+        newEquipment.equipmentPrice = equipment.equipmentPrice
+        newEquipment.equipmentQuantity = 1
+        newEquipment.equipmentStock = equipment.equipmentStock
+        
+
+
+        return await equipmentRepository.save(newEquipment);
       },
     getAll: async (): Promise<Equipment[]> => {
         return await equipmentRepository.find();

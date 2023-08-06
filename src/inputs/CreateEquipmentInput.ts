@@ -17,4 +17,11 @@ export class CreateEquipmentInput {
 
     @Field()
     equipmentPicture!: string;
+
+    @Field({ nullable: true })
+    equipmentQuantity!: number;
+
+    @Field({ nullable: true })
+    equipmentStock!: number;
+
 }

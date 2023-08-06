@@ -60,6 +60,14 @@ export class Reptile {
   @Column()
   photoId!: string
 
+  @Field()
+  @Column()
+  stock!: number
+
+  @Field()
+  @Column()
+  moeurs!: string
+
   @Field(() => Upkeep)
   @OneToOne(() => Upkeep, (upkeep) => upkeep.reptileId, { cascade: true, onUpdate: "CASCADE", eager: true })
   @JoinColumn({ name: "upkeep_id"})

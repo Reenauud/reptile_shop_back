@@ -28,6 +28,14 @@ export class Equipment {
   @Column()
   equipmentDetails!: string;
 
+  @Field({ nullable: true })
+  @Column()
+  equipmentQuantity!: number;
+
+  @Field({ nullable: true })
+  @Column()
+  equipmentStock!: number;
+
   @Field()
   @Column({ nullable: true})
   equipmentPicture!: string;

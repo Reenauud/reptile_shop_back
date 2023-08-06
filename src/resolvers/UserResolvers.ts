@@ -23,7 +23,7 @@ export class UserResolver {
 
 
   @Query(() => User)
-  async getOneUser(@Arg("email") email: string): Promise<any> {
+  async getOneUser(@Arg("email") email: string): Promise<User> {
     try {
       const user = await userServices.getByEmail(email);
       return user;
@@ -57,13 +57,9 @@ export class UserResolver {
     @Arg("password") password: string
   ): Promise<String | undefined> {
     try {
-      // Récupérer l'utilisateur dans la bdd suivant l'email
       const user = await userServices.getByEmail(email);
 
-      // Vérifier que ce sont les même mots de passe
       if (await authServices.verifyPassword(password, user.hashedPassword)) {
-        console.log(password, user.hashedPassword)
-        // Créer un nouveau token => signer un token
         const token = authServices.signJwt({
           email: user.email,
         });

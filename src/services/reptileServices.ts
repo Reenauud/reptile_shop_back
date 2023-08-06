@@ -21,11 +21,13 @@ export default {
 id: categoryId
     })
 
+
     const newReptile = new Reptile()
     newReptile.name = reptile.name
     newReptile.description = reptile.description
     newReptile.price = reptile.price
-    newReptile.quantity = reptile.quantity
+    newReptile.quantity = 1
+    newReptile.stock = reptile.stock
     newReptile.category = category
     newReptile.photoId = reptile.photoId
     newReptile.scientificName = reptile.scientificName
@@ -33,6 +35,7 @@ id: categoryId
     newReptile.dayTemp = reptile.dayTemp
     newReptile.nightTemp = reptile.nightTemp
     newReptile.nightHumidity = reptile.nightHumidity
+    newReptile.moeurs = reptile.moeurs
     // newReptile.category = reptile.category
     return await reptileRepository.save(newReptile);
   },
