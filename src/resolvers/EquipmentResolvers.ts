@@ -27,4 +27,73 @@ export class EquipmentResolvers {
         throw new Error(err.message);
       }
     }
+
+    @Mutation(()=> [Equipment]) async DeleteEquipment(
+      @Arg("equipmentId") id : number
+    ){
+
+        try {
+
+          await equipmentServices.delete(id)
+          return await equipmentServices.getAll();
+
+
+          // return equipment
+          
+        } catch (err : any) {
+          throw new Error(err.message)
+          
+        }
+
+    }
+
+    @Mutation(()=> Equipment) async UpdateEquipment(
+
+      // @Arg("equipment") equipmentName : string,
+      @Arg("id") id : number,
+      @Arg("name") equipmentName : string,
+      @Arg("description") equipmentDescription : string,
+      @Arg("details") equipmentDetails : string,
+      @Arg("picture") equipmentPicture : string,
+      @Arg("price") equipmentPrice : number,
+      @Arg("quantity") equipmentQuantity : number,
+      @Arg("stock") equipmentStock : number,
+
+
+      ){
+
+        try {
+          const equipmentUpdated = await equipmentServices.update(id , equipmentName, equipmentDescription, equipmentDetails, equipmentPicture, equipmentPrice, equipmentQuantity, equipmentStock)
+
+          return equipmentUpdated
+    
+          
+        } catch (err : any ) {
+          throw new Error(err.message)
+          
+        }
+      }
+
+      @Query(()=> Equipment) async GetEquipmentById(
+        @Arg("id") id : number
+      ){
+        try {
+
+          const equipment = await equipmentServices.getEquipmentById(id)
+
+          return equipment
+          
+        } catch (err: any) {
+
+          throw new Error(err.message)
+          
+        }
+
+      }
+
+     
+
+
+
+    
 }

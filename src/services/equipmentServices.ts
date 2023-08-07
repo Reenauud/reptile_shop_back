@@ -16,12 +16,40 @@ export default {
         newEquipment.equipmentPrice = equipment.equipmentPrice
         newEquipment.equipmentQuantity = 1
         newEquipment.equipmentStock = equipment.equipmentStock
-        
+
 
 
         return await equipmentRepository.save(newEquipment);
-      },
+    },
     getAll: async (): Promise<Equipment[]> => {
         return await equipmentRepository.find();
+    },
+
+    delete: async (id: number) => {
+        const DeleteEquipment = await equipmentRepository.findOneByOrFail({ id })
+        await equipmentRepository.delete(DeleteEquipment)
+    },
+
+    update: async (id: number, equipmentName: string, equipmentDescription: string, 
+        equipmentDetails: string, equipmentPicture: string, equipmentPrice: number,
+         equipmentQuantity: number, equipmentStock: number): Promise<Equipment> => {
+
+        const equipmentUpdated = await equipmentRepository.findOneByOrFail({ id })
+
+        const newEquipment = equipmentUpdated
+
+        newEquipment.equipmentName = equipmentName || equipmentUpdated.equipmentName
+        newEquipment.equipmentDescription = equipmentDescription || equipmentUpdated.equipmentDescription
+        newEquipment.equipmentDetails = equipmentDetails || equipmentUpdated.equipmentDetails
+        newEquipment.equipmentPicture = equipmentPicture || equipmentUpdated.equipmentPicture
+        newEquipment.equipmentPrice = equipmentPrice || equipmentUpdated.equipmentPrice
+        newEquipment.equipmentQuantity = equipmentQuantity || equipmentUpdated.equipmentQuantity
+        newEquipment.equipmentStock = equipmentStock || equipmentUpdated.equipmentStock
+
+        return await equipmentRepository.save(newEquipment)
+    },
+
+    getEquipmentById: async (id: number): Promise<Equipment> => {
+        return await equipmentRepository.findOneByOrFail({ id });
     },
 }
