@@ -25,9 +25,21 @@ export default {
         return await equipmentRepository.find();
     },
 
-    delete: async (id: number) => {
-        const DeleteEquipment = await equipmentRepository.findOneByOrFail({ id })
-        await equipmentRepository.delete(DeleteEquipment)
+    delete: async (id: number | undefined) => {
+
+        try {
+
+
+        const DeleteEquipment = await equipmentRepository.findOneByOrFail( {id} )
+
+        return await equipmentRepository.delete(DeleteEquipment)
+            
+        } catch (error: any) {
+
+            throw new Error(error.message)
+            
+        }
+
     },
 
     update: async (id: number, equipmentName: string, equipmentDescription: string, 

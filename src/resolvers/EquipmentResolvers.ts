@@ -2,6 +2,7 @@ import { Query, Arg, Resolver, Mutation } from "type-graphql";
 import equipmentServices from "../services/equipmentServices";
 import { Equipment } from "../entities/Equipment";
 import { CreateEquipmentInput } from "../inputs/CreateEquipmentInput";
+import { stringify } from "querystring";
 
 @Resolver(Equipment)
 export class EquipmentResolvers {
@@ -88,6 +89,16 @@ export class EquipmentResolvers {
           throw new Error(err.message)
           
         }
+
+      }
+
+      @Mutation(()=> Equipment) async DeleteEquipmentById(
+        @Arg("id") id : number){
+        
+        const equipment = await equipmentServices.getEquipmentById(id)
+        const equipmentId = equipment.id
+
+        return await equipmentServices.delete(equipmentId)
 
       }
 
