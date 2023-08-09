@@ -14,7 +14,7 @@ mv reptile_shop_back/ old_reptile_shop_back/
 git clone git@github.com:Reenauud/reptile_shop_back.git
 cd reptile_shop_back/
 git pull -f --rebase origin main
-mkdir bdd/sql-files
+mkdir dbData
 
 # récupérer les .env uploadés précédemment avec scp et les déplacer ici
 mv ../dotenv/.env.backend .env
