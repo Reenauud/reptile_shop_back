@@ -17,7 +17,7 @@ git pull -f --rebase origin main
 mkdir dbData
 
 # récupérer les .env uploadés précédemment avec scp et les déplacer ici
-mv ../dotenv/.env.backend .env
+mv ../dotenv/reptiles_shop_back/.env.backend .env
 
 # move old database to new folder
 mv ../old_reptile_shop_back/dbData/ .
